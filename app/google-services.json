@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "2219988400",
+    "project_id": "letsgo-c80f9",
+    "storage_bucket": "letsgo-c80f9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2219988400:android:76c1ebeefa175cf6783275",
+        "android_client_info": {
+          "package_name": "com.letsGodelivery.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNQcujQUw9yzOpEzClnaeRgxPCcKQ3xT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
