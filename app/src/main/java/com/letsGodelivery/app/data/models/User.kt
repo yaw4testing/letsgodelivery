@@ -12,16 +12,26 @@ data class Address(
     val country: String? = null,
     val countryCode: String? = null // e.g., "GH", "US"
 ) {
-    constructor() : this(null, null, null, null, null, null, null) // For Firestore
+    fun toFormattedString(): String {
+        val parts = listOfNotNull(
+            streetLine1,
+            streetLine2,
+            city,
+            stateOrProvince,
+            postalCode,
+            country
+        )
+        return parts.filter { it.isNotBlank() }.joinToString(", ")
+    }
 }
 data class User(
-    val uid: String = "", // Firebase Auth User ID
+    val uid: String = "",
     val email: String = "",
-    val userType: UserType = UserType.CUSTOMER, // "CUSTOMER" or "DRIVER"
-    val displayName: String = "", // Optional: for display name
-    val phoneNumber: String = "", // Optional
+    val userType: UserType = UserType.CUSTOMER,
+    val displayName: String = "",
+    val phoneNumber: String = "",
     val address: Address? = null,
-    val createdAt: Long = System.currentTimeMillis(), // Timestamp
+    val createdAt: Long = System.currentTimeMillis(),
     val gpsLatitude: Double? = null,
     val gpsLongitude: Double? = null,
 

@@ -65,7 +65,7 @@ fun CustomerHomeScreen(
                 Text(text = email, fontSize = 16.sp)
             }
             userProfile?.address?.let { address ->
-                Text(text = address, fontSize = 16.sp)
+                Text(text = address.toFormattedString(), fontSize = 16.sp)
             }
 
             Spacer(modifier = Modifier.height(32.dp))

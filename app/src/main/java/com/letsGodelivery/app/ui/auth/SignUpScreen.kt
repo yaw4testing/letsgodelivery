@@ -29,7 +29,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.letsGodelivery.app.data.models.Address
 import com.letsGodelivery.app.data.models.UserType
+import com.letsGodelivery.app.ui.forms.AddressForm
 import com.letsGodelivery.app.ui.theme.LetsGoTheme
 
 @Composable
@@ -42,6 +44,8 @@ fun SignUpScreen(
     var password by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var selectedUserType by remember { mutableStateOf(UserType.CUSTOMER) }
+    var address by remember { mutableStateOf(Address()) }
+    var phoneNumber by remember { mutableStateOf("") }
     val authState by authViewModel.authUiState.collectAsState()
 
     Column(
@@ -67,6 +71,19 @@ fun SignUpScreen(
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        AddressForm(address = address, onAddressChange = { address = it })
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            value = phoneNumber,
+            onValueChange = { phoneNumber = it },
+            label = { Text("Phone Number") },
             singleLine = true,
             modifier = Modifier.fillMaxWidth()
         )
@@ -114,7 +131,7 @@ fun SignUpScreen(
             onClick = {
                 // Add more robust validation
                 if (email.isNotBlank() && password.length >= 6 && displayName.isNotBlank()) {
-                    authViewModel.signUp(email, password, displayName, selectedUserType)
+                    authViewModel.signUp(email, password, displayName, selectedUserType, address, phoneNumber)
                 }
             },
             modifier = Modifier.fillMaxWidth(),
